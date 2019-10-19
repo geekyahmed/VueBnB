@@ -6,7 +6,11 @@
         <li><router-link :to="{name: 'edit', params: { id: user._id }}" class="btn btn-primary">Edit</router-link></li>
     </ul> -->
        <div class=" container-fluid my-4">
-         <h2 class="text-center">Find A Developer That Suits You</h2>
+         <div class="jumbotron alert-success" >
+           <h1 class="text-center title">Mooza</h1>
+           <h3 class="title text-center">Find Developers To Connect With</h3>
+           <h4 class="text-center">Project By Bankole Ahmed</h4>
+         </div>
     <div v-for="user in users" :key="user._id" class="card-group" style= ''>
       <div class="col-md-12 ml-2 row card-columns">
         <div class="card card-user">

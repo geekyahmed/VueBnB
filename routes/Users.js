@@ -56,7 +56,7 @@ users.post('/register', (req, res) => {
     bio: req.body.bio,
     city: req.body.city,
     country: req.body.username,
-    tags: req.body.tags,
+    tags:  req.body.tags,
     email: req.body.email,
     tagline: req.body.tagline,
     password: req.body.password,

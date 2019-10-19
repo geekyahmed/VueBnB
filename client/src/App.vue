@@ -2311,7 +2311,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
 }
 
 h1,
@@ -5555,7 +5555,7 @@ License - nucleoapp.com/license/
 
 .card .image {
   overflow: hidden;
-  height: 100px;
+  height: 70px;
   position: relative;
 }
 
