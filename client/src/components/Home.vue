@@ -9,7 +9,6 @@
          <div class="jumbotron alert-success" >
            <h1 class="text-center title">Mooza</h1>
            <h3 class="title text-center">Find Developers To Connect With</h3>
-           <h4 class="text-center">Project By Bankole Ahmed</h4>
          </div>
     <div v-for="user in users" :key="user._id" class="card-group" style= ''>
       <div class="col-md-12 ml-2 row card-columns">
