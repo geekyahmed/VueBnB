@@ -1,60 +1,67 @@
-const express = require('express')
-const posts = express.Router()
-const cors = require('cors')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const express = require("express");
+const posts = express.Router();
+const cors = require("cors");
+const Post = require("../models/PostModel");
 
-const Post = require('../models/Post')
-posts.use(cors())
+posts.use(cors());
 
-process.env.SECRET_KEY = 'secret'
-
-post.route('/').get(function (req, res) {
-  Post.find(function(err, posts){
-  if(err){
-    res.json(err);
-  }
-  else {
-    res.json(posts);
-  }
-});
+posts.route("/").get(function(req, res) {
+  Post.find(function(err, posts) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(posts);
+    }
+  });
 });
 
-posts.post('/addpost', (req, res) => {
-  const today = new Date()
-  const postData = {
-    post_title: req.body.post_title,
-    post_desc: req.body.post_desc,
-    post_article: req.body.post_article,
-    tags: req.body.tags,
-    post_author: req.body.post_author,
-    created: today
-  }
+posts.route("/post/:id").get(function(req, res) {
+  const id = req.params.id;
 
-  Post.findOne({
-    post_title: req.body.post_title
-})
+  Post.findById(id)
+    .populate({
+      path: "comments",
+      populate: { path: "user", model: "user" },
+      populate: { path: "location", model: "location" }
+    })
     .then(post => {
       if (!post) {
-        bcrypt.hash(req.body.post_desc, 10, (err, hash) => {
-            postData.post_desc = hash
-          Post.create(postData)
-            .then(post => {
-              res.json({ status: post.post_title + ' has been posted' })
-            })
-            .catch(err => {
-              res.send('error: ' + err)
-            })
-        })
+        res.status(404).json({ message: "No Post Found" });
       } else {
-        res.json({ error: 'Post already exists' })
+        res.json(post);
+      }
+    });
+});
+
+posts.post("/post/create", (req, res) => {
+  const today = new Date();
+  const userData = {
+    title: req.body.title,
+    article: req.body.article,
+    location: req.body.location,
+    country: req.body.country,
+    created: today
+  };
+
+  Post.findOne({
+    title: req.body.title
+  })
+    .then(post => {
+      if (!post) {
+        Post.create(userData)
+          .then(post => {
+            res.json({ status: post.title + " has been created" });
+          })
+          .catch(err => {
+            res.send("error: " + err);
+          });
+      } else {
+        res.json({ error: "Post already exists" });
       }
     })
     .catch(err => {
-      res.send('error: ' + err)
-    })
-})
+      res.send("error: " + err);
+    });
+});
 
-
-
-module.exports = posts
+module.exports = posts;
