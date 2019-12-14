@@ -1,2 +1,2 @@
-# Mooza 
-A community for finding devlopers to connect with and also share ideas and ask problems and questions concerning issues.
+# VueBnb
+An Airbnb clone that allows you to view rooms,hotels and also book holidays,spas,hotels and various apartments using Vue js for frontend  and Nodejs for backend
