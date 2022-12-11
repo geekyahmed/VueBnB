@@ -22,7 +22,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "cors": "^2.8.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "jsonwebtoken": "^7.4.2",
     "jwt-decode": "^2.2.0",
     "mongodb": "^3.1.6",
